@@ -1,26 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="//unpkg.com/alpinejs" defer></script>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.5/axios.min.js" integrity="sha512-TjBzDQIDnc6pWyeM1bhMnDxtWH0QpOXMcVooglXrali/Tj7W569/wd4E8EDjk1CwOAOPSJon1VfcEt1BI4xIrA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <title>Alpine.js Crash Course</title>
-  <style>
-    [x-cloak] {
-      display: none;
-    }
-  </style>
-</head>
-<body>
-  <div class="cotainer mx-auto mt-6 max-w-sm">
-    <h1 class="text-5xl mb-4">Alpine.js Demo</h1>
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			http-equiv="X-UA-Compatible"
+			content="IE=edge"
+		/>
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<script
+			defer
+			src="https://cdn.jsdelivr.net/npm/@alpinejs/mask@3.x.x/dist/cdn.min.js"
+		></script>
+		<script
+			src="https://unpkg.com/alpinejs"
+			defer
+		></script>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.5/axios.min.js"
+			integrity="sha512-TjBzDQIDnc6pWyeM1bhMnDxtWH0QpOXMcVooglXrali/Tj7W569/wd4E8EDjk1CwOAOPSJon1VfcEt1BI4xIrA=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		></script>
+		<title>Alpine.js Crash Course</title>
+		<style>
+			[x-cloak] {
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="cotainer mx-auto mt-6 max-w-sm">
+			<h1 class="text-5xl mb-4">Alpine.js Demo</h1>
 
-    <!-- x-data creates an alpine-component -->
-    <div
-      x-data="{
+			<!-- x-data creates an alpine-component -->
+			<div
+				x-data="{
         open: false,
         name: 'Brad',
         search: '',
@@ -31,119 +49,140 @@
           {title: 'Post Four'},
         ]
       }"
-    >
-      <!-- x-on & x-bind -->
-      <button
-        x-on:click="open = !open"
-        x-bind:class="open ? 'bg-blue-800' : 'bg-slate-700'"
-        class="text-white px-4 py-2 rounded-xl"
-      >
-        Toggle
-      </button>
+			>
+				<!-- x-on & x-bind -->
+				<button
+					x-on:click="open = !open"
+					x-bind:class="open ? 'bg-blue-800' : 'bg-slate-700'"
+					class="text-white px-4 py-2 rounded-xl"
+				>
+					Toggle
+				</button>
 
-      <!-- x-show -->
-      <div x-show="open" x-transition x-cloak>
-        <p class="bg-gray-200 p-4 my-6 rounded">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam consequatur dolorem ea vel aliquam culpa nostrum voluptate ab voluptatem tempora.
-        </p>
-      </div>
+				<!-- x-show -->
+				<div
+					x-show="open"
+					x-transition
+					x-cloak
+				>
+					<p class="bg-gray-200 p-4 my-6 rounded">
+						Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam consequatur dolorem ea vel aliquam culpa
+						nostrum voluptate ab voluptatem tempora.
+					</p>
+				</div>
 
-      <!-- x-text -->
-      <div class="my-4">
-        The value of name is <span x-text="name" class="font-bold"></span>
-      </div>
+				<!-- x-text -->
+				<div class="my-4">
+					The value of name is
+					<span
+						x-text="name"
+						class="font-bold"
+					></span>
+				</div>
 
-      <!-- x-effect -->
-      <div class="my-4" x-effect="console.log(open)"></div>
+				<!-- x-effect -->
+				<div
+					class="my-4"
+					x-effect="console.log(open)"
+				></div>
 
-      <!-- x-model -->
-      <input
-        x-model="search"
-        type="text"
-        class="border p-2 2-full mb-2 mt-6"
-        placeholder="Search for something..."
-      />
-      <p class="font-bold">
-        <span class="font-bold">Searching for:</span>
-        <span x-text="search"></span>
-      </p>
+				<!-- x-model -->
+				<input
+					x-model="search"
+					type="text"
+					class="border p-2 2-full mb-2 mt-6"
+					placeholder="Search for something..."
+				/>
+				<p class="font-bold">
+					<span class="font-bold">Searching for:</span>
+					<span x-text="search"></span>
+				</p>
 
-      <!-- x-if -->
-      <template x-if="open">
-        <div class="bg-gray-50 p-2 mt-8">
-          Template based on a condition
-        </div>
-      </template>
+				<!-- x-if -->
+				<template x-if="open">
+					<div class="bg-gray-50 p-2 mt-8">Template based on a condition</div>
+				</template>
 
-      <!-- x-for -->
-      <h3 class="text-2xl mt-6 mb-3 font-bold">Posts</h3>
-      <template x-for="post in posts">
-        <div x-text="post.title"></div>
-      </template>
-      <!-- you can do @click instead of x-on:click -->
-      <button
-        @click="posts.push({title: 'New Post'})"
-        class="bg-blue-800 text-white px-4 py-2 rounded-lg mt-4"
-      >
-        Add Post
-      </button>
+				<!-- x-for -->
+				<h3 class="text-2xl mt-6 mb-3 font-bold">Posts</h3>
+				<template x-for="post in posts">
+					<div x-text="post.title"></div>
+				</template>
+				<!-- you can do @click instead of x-on:click -->
+				<button
+					@click="posts.push({title: 'New Post'})"
+					class="bg-blue-800 text-white px-4 py-2 rounded-lg mt-4"
+				>
+					Add Post
+				</button>
 
-      <!-- x-ref -->
-      <div class="my-6">
-        <div x-ref="text">Hello World</div>
-        <button
-          @click="$refs.text.remove()"
-          class="bg-black text-white p-2 rounded-lg"
-        >
-          CLick
-        </button>
-      </div>
+				<!-- x-ref -->
+				<div class="my-6">
+					<div x-ref="text">Hello World</div>
+					<button
+						@click="$refs.text.remove()"
+						class="bg-black text-white p-2 rounded-lg"
+					>
+						CLick
+					</button>
+				</div>
 
-      <!-- xhtml -->
-      <div x-html="(await axios.get('./partial.html')).data">...</div>
+				<!-- xhtml -->
+				<div x-html="(await axios.get('./partial.html')).data">...</div>
 
-      <!-- $el access the current element -->
-      <button
-        @click="$el.innerHTML = 'Hello World'"
-        class="mt-4 p-4 border">
-        Replace Text
-      </button>
+				<!-- $el access the current element -->
+				<button
+					@click="$el.innerHTML = 'Hello World'"
+					class="mt-4 p-4 border"
+				>
+					Replace Text
+				</button>
 
-      <!-- x-init & $watch -->
-      <div x-init="$watch('posts', value => console.log(value))"></div>
+				<!-- x-init & $watch -->
+				<div x-init="$watch('posts', value => console.log(value))"></div>
 
-      <!-- $dispatch -->
-      <div @notify="alert('You have been notified')">
-        <button
-          @click="$dispatch('notify')"
-          class="bg-green-700 text-white p-2 rounded-lg mt-4"
-        >
-          Notify
-        </button>
-      </div>
+				<!-- $dispatch -->
+				<div @notify="alert('You have been notified')">
+					<button
+						@click="$dispatch('notify')"
+						class="bg-green-700 text-white p-2 rounded-lg mt-4"
+					>
+						Notify
+					</button>
+				</div>
 
-      <!-- $data -->
-      <button
-        @click="getLatestPost($data.posts)"
-        class="bg-orange-800 text-white mt-6 p-2 rounded-lg"
-      >
-        Get Latest Post
-      </button>
-    </div>
-  </div>
+				<!-- $data -->
+				<button
+					@click="getLatestPost($data.posts)"
+					class="bg-orange-800 text-white mt-6 p-2 rounded-lg"
+				>
+					Get Latest Post
+				</button>
 
-  <!-- This creates another component so it cant use the other data passed in the other component -->
-  <footer
-    x-data
-    class="text-center mt-10"
-  >
-    <p>Copyright &copy; <span x-text="new Date().getFullYear()"></span></p>
-  </footer>
+				<!-- Alpine Mask -->
+				<div class="mt-6">
+					<h3 class="text-2xl mb-2">Enter a date:</h3>
+					<input
+						class="border w-full p-2"
+						x-mask="99/99/9999"
+						placeholder="MM/DD/YYYY"
+					/>
+				</div>
+			</div>
+		</div>
 
-  <script>
-    function getLatestPost(posts) {
-      console.log(posts.slice(-1).pop());
-    }
-  </script>
-</body>
+		<!-- This creates another component so it cant use the other data passed in the other component -->
+		<footer
+			x-data
+			class="text-center mt-10"
+		>
+			<p>Copyright &copy; <span x-text="new Date().getFullYear()"></span></p>
+		</footer>
+
+		<script>
+			function getLatestPost(posts) {
+				console.log(posts.slice(-1).pop());
+			}
+		</script>
+	</body>
 </html>
